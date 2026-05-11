@@ -1,5 +1,5 @@
 # Produtor Milionário 2.0 — Bundle de Skills para Claude Code (Windows)
-# Instala 7 skills em ~/.claude/skills/
+# Instala 10 skills em ~/.claude/skills/
 # Uso: irm https://raw.githubusercontent.com/Geeknosnegocios/skill-produtor2.0/main/install.ps1 | iex
 
 $ErrorActionPreference = "Stop"
@@ -26,7 +26,10 @@ $Skills = @(
   "skill-copywriting",
   "cakto-setup",
   "skill-frontend",
-  "karpathy-guidelines"
+  "karpathy-guidelines",
+  "AGENTE-COPY",
+  "AGENTE-PAGINA",
+  "AGENTE-CRIATIVO"
 )
 
 foreach ($skill in $Skills) {
@@ -39,11 +42,14 @@ foreach ($skill in $Skills) {
 Remove-Item -Recurse -Force $TmpDir
 
 Write-Host ""
-Write-Host "✅ 7 skills instaladas em $SkillsDir" -ForegroundColor Green
+Write-Host "✅ 10 skills instaladas em $SkillsDir" -ForegroundColor Green
 Write-Host ""
 Write-Host "Reinicie o Claude Code e use:"
-Write-Host "  /pesquisar-nicho    → validar nicho"
+Write-Host "  /pesquisar-nicho    → validar nicho com Meta Ads Library"
 Write-Host "  /modelar-produto    → modelar produto"
-Write-Host "  /criar-lowticket    → criar produto completo"
-Write-Host "  /cakto-setup        → montar funil Cakto"
+Write-Host "  /criar-lowticket    → criar produto completo (briefing + copy + estrutura)"
+Write-Host "  /AGENTE-COPY        → copy black completa (headlines, bullets, VSL, hooks)"
+Write-Host "  /AGENTE-PAGINA      → página HTML completa pronta para Vercel"
+Write-Host "  /AGENTE-CRIATIVO    → kit criativos Meta (VSL + UGC + carrossel + estáticas)"
+Write-Host "  /cakto-setup        → montar funil Cakto 9 produtos"
 Write-Host ""
