@@ -71,9 +71,32 @@ let skipped = 0;
 for (const f of files) {
   const content = readFileSync(f, 'utf-8');
 
-  // Skip if already has gpx loader
-  if (content.includes(`/p/${SLUG}.js`)) {
-    console.log(`  · ${f.replace(ROOT, '.')} — já tem GeekPixel`);
+  // Skip if already has gpx loader pointing to correct origin
+  const externalRef = `https://metricageek.vercel.app/p/${SLUG}.js`;
+  const firstPartyRef = `/_gpx/p/${SLUG}.js`;
+  const hasExternal = content.includes(externalRef);
+  const hasFirstParty = content.includes(firstPartyRef);
+
+  // If --firstparty and file has external ref, SWAP it
+  if (FIRSTPARTY && hasExternal && !hasFirstParty) {
+    const swapped = content.split(externalRef).join(firstPartyRef);
+    if (BACKUP) { try { copyFileSync(f, f + '.bak'); } catch {} }
+    writeFileSync(f, swapped, 'utf-8');
+    console.log(`  ↻ ${f.replace(ROOT, '.')} — swapped pra first-party (/_gpx/p/)`);
+    modified++;
+    continue;
+  }
+  // If non-firstparty and file has first-party ref, swap back
+  if (!FIRSTPARTY && hasFirstParty && !hasExternal) {
+    const swapped = content.split(firstPartyRef).join(externalRef);
+    if (BACKUP) { try { copyFileSync(f, f + '.bak'); } catch {} }
+    writeFileSync(f, swapped, 'utf-8');
+    console.log(`  ↻ ${f.replace(ROOT, '.')} — swapped pra cross-origin`);
+    modified++;
+    continue;
+  }
+  if (hasExternal || hasFirstParty) {
+    console.log(`  · ${f.replace(ROOT, '.')} — já tem GeekPixel (${hasFirstParty ? '1st-party' : '3rd-party'})`);
     alreadyHasGpx++;
     continue;
   }
