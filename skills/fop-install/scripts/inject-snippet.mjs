@@ -142,6 +142,7 @@ if (FIRSTPARTY) {
     { source: '/_gpx/track/:ws', destination: 'https://metricageek.vercel.app/api/gpx/track/:ws' },
     { source: '/_gpx/identify/:ws', destination: 'https://metricageek.vercel.app/api/gpx/identify/:ws' },
     { source: '/_gpx/hydrate/:ws/:sid', destination: 'https://metricageek.vercel.app/api/gpx/hydrate/:ws/:sid' },
+    { source: '/_gpx/keep-cookie/:ws', destination: 'https://metricageek.vercel.app/api/gpx/keep-cookie/:ws' },
   ];
   for (const r of GPX_REWRITES) {
     if (!vj.rewrites.find((x) => x.source === r.source)) vj.rewrites.push(r);
