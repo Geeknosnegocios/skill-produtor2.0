@@ -16,12 +16,17 @@ const ROOT = args.path;
 const SLUG = args.slug;
 const COMMIT = !!args.commit;
 const BACKUP = args['no-backup'] !== true;
+const FIRSTPARTY = !!args.firstparty;
 
 const IGNORE_DIRS = new Set(['node_modules', 'dist', 'build', '.next', '.git', '.vercel', '.cache', 'public/_next', 'out']);
 
-const SNIPPET = `    <!-- GeekPixel FOP — Match Quality 9+ -->
+const SCRIPT_SRC = FIRSTPARTY
+  ? `/_gpx/p/${SLUG}.js`
+  : `https://metricageek.vercel.app/p/${SLUG}.js`;
+
+const SNIPPET = `    <!-- GeekPixel FOP — Match Quality 9+${FIRSTPARTY ? ' · first-party proxy' : ''} -->
     <script>window.gpxq=window.gpxq||[];</script>
-    <script src="https://metricageek.vercel.app/p/${SLUG}.js" async></script>`;
+    <script src="${SCRIPT_SRC}" async></script>`;
 
 const TX_TOKEN_HELPER = `    <script>
       (function () {
@@ -102,6 +107,24 @@ for (const f of files) {
 }
 
 console.log(`\n✅ Modificados: ${modified} · Já OK: ${alreadyHasGpx} · Skipped: ${skipped}`);
+
+// First-party proxy: adiciona rewrites em vercel.json
+if (FIRSTPARTY) {
+  const vercelJsonPath = join(ROOT, 'vercel.json');
+  let vj = {};
+  try { vj = JSON.parse(readFileSync(vercelJsonPath, 'utf-8')); } catch {}
+  vj.rewrites = vj.rewrites || [];
+  const GPX_REWRITES = [
+    { source: '/_gpx/p/:slug', destination: 'https://metricageek.vercel.app/p/:slug' },
+    { source: '/_gpx/track/:ws', destination: 'https://metricageek.vercel.app/api/gpx/track/:ws' },
+    { source: '/_gpx/identify/:ws', destination: 'https://metricageek.vercel.app/api/gpx/identify/:ws' },
+  ];
+  for (const r of GPX_REWRITES) {
+    if (!vj.rewrites.find((x) => x.source === r.source)) vj.rewrites.push(r);
+  }
+  writeFileSync(vercelJsonPath, JSON.stringify(vj, null, 2), 'utf-8');
+  console.log(`  + vercel.json rewrites adicionados (first-party proxy /_gpx/*)`);
+}
 
 if (COMMIT && modified > 0) {
   try {
