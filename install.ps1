@@ -29,7 +29,8 @@ $Skills = @(
   "karpathy-guidelines",
   "AGENTE-COPY",
   "AGENTE-PAGINA",
-  "AGENTE-CRIATIVO"
+  "AGENTE-CRIATIVO",
+  "fop-install"
 )
 
 foreach ($skill in $Skills) {
@@ -42,7 +43,7 @@ foreach ($skill in $Skills) {
 Remove-Item -Recurse -Force $TmpDir
 
 Write-Host ""
-Write-Host "✅ 10 skills instaladas em $SkillsDir" -ForegroundColor Green
+Write-Host "✅ 11 skills instaladas em $SkillsDir" -ForegroundColor Green
 Write-Host ""
 Write-Host "Reinicie o Claude Code e use:"
 Write-Host "  /pesquisar-nicho    → validar nicho com Meta Ads Library"
@@ -52,4 +53,5 @@ Write-Host "  /AGENTE-COPY        → copy black completa (headlines, bullets, V
 Write-Host "  /AGENTE-PAGINA      → página HTML completa pronta para Vercel"
 Write-Host "  /AGENTE-CRIATIVO    → kit criativos Meta (VSL + UGC + carrossel + estáticas)"
 Write-Host "  /cakto-setup        → montar funil Cakto 9 produtos"
+Write-Host "  /fop-install        → Pixel + CAPI + Match Quality 9+ (MetricaGeek)"
 Write-Host ""

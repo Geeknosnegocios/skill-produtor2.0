@@ -98,3 +98,16 @@ Cria subpasta `operacoes/lowticket/produtos-modelados/[slug]/` com:
 - `entregavel-pdf.md` — conteúdo completo do produto
 
 Após criar: "Quer a página HTML de vendas? Rode `/AGENTE-PAGINA`."
+
+---
+
+## Pipeline completo lowticket (referência)
+
+1. `/criar-lowticket [ideia]` — briefing + copy + entregável
+2. `/AGENTE-PAGINA` — página HTML pronta
+3. `/AGENTE-CRIATIVO` — criativos Meta Ads
+4. `/cakto-setup` (ou `/pesquisar-nicho` antes) — funil Cakto + checkout
+5. **`/fop-install`** — **OBRIGATÓRIO** — Pixel + CAPI + Match Quality 9+ via MetricaGeek
+6. Deploy Vercel + ativar campanhas Meta
+
+Cada produto **DEVE** terminar com `/fop-install` antes do deploy. Sem FOP, tracking fica em Match Quality 4-6 (algoritmo Meta otimiza pior, CPM/CPA piora 20-30%).

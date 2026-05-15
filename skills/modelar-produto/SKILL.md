@@ -145,3 +145,21 @@ PRÓXIMOS PASSOS:
 
 ## Regra de ouro
 Nunca copie — modele. Extraia o que funciona (ângulo, dor, promessa) e crie versão própria com nome diferente, posicionamento diferente, entregável diferente.
+
+---
+
+## Tracking final — FOP obrigatório
+
+Todo produto modelado **DEVE** terminar com `/fop-install` antes de subir ads.
+
+FOP entrega:
+- Pixel client-side + CAPI server-side + Advanced Matching propagado em 18 eventos
+- Persistência tripla (cookie 365d + localStorage + banco gpx_identity)
+- Geo-IP no 1º toque + re-hidratação retornante
+- Webhook bridge (utm_content=gpx:sid) propaga AM no Purchase via PerfectPay/Cakto/Hotmart
+- Match Quality 9+ Purchase · 6-8 eventos topo
+- Dashboard `/dashboard/<slug>/tracking` real-time
+
+Sem FOP: Match Quality 4-6, Andromeda recebe sinal ruim, CPA sobe 20-30%.
+
+Skill: `/fop-install` (provisiona workspace MetricaGeek + injeta GeekPixel.js no HTML).

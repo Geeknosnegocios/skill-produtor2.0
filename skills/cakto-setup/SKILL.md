@@ -337,6 +337,32 @@ E confirmar: "Página HTML atualizada ✅ — pronta para deploy."
 
 ---
 
+## PASSO FINAL OBRIGATÓRIO — Instalar FOP (Match Quality 9+)
+
+Após confirmar página atualizada, **SEMPRE** perguntar:
+
+> "Cakto configurada ✅. Instalar FOP (Funil de Otimização do Pixel)? Cria workspace MetricaGeek + Pixel CAPI server-side + GeekPixel.js. Match Quality 9+ em todos eventos."
+
+Se sim, invocar skill `fop-install` passando:
+- Nome do produto
+- Pixel Meta ID configurado
+- Domínio(s) de deploy
+- Path local do projeto
+
+A skill `fop-install` automatiza:
+1. **`provision.mjs`** — Cria workspace MetricaGeek + webhook + Meta integration (token encrypted)
+2. **`inject-snippet.mjs`** — Substitui pixel inline em todos HTMLs por GeekPixel loader
+3. Output: webhook URL pra Cakto + dashboard URL + git commit/push
+
+**Webhook Cakto** após FOP:
+- URL: `https://metricageek.vercel.app/api/webhook/<webhook_secret>` (output do provision)
+- Cakto: Produto → Notificações → Webhook → adiciona URL acima
+- Variáveis: `{transaction_id}` (Cakto detectada auto via payload structure)
+
+Substitui pixel inline atual — depois FOP installed, browser pixel + CAPI server-side + AM propagado funcionam juntos com dedup via event_id.
+
+---
+
 ## Troubleshooting comum
 
 | Problema | Solução |

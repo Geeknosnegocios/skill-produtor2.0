@@ -1,7 +1,7 @@
 # Produtor Milionário 2.0 — Skills Bundle
 
 Skills oficiais do curso **Produtor Milionário 2.0 — Era IA**.  
-Instala 10 skills no Claude Code com 1 comando.
+Instala 11 skills no Claude Code com 1 comando.
 
 ---
 
@@ -35,6 +35,7 @@ Reinicie o Claude Code após instalar.
 | cakto-setup | `/cakto-setup` | Monta funil completo no Cakto (OBs, upsells, downsells) |
 | skill-frontend | *(automática)* | Padrões de página HTML de alta conversão |
 | karpathy-guidelines | *(sempre ativa)* | Princípios de execução: pensar antes, mudanças cirúrgicas, foco em objetivo |
+| **fop-install** | `/fop-install` | **Funil de Otimização do Pixel** — provisiona workspace MetricaGeek + GeekPixel.js + CAPI server-side. Match Quality 9+ em todos eventos, Advanced Matching propagado, banco próprio. Substitui Stape/GTM. **OBRIGATÓRIO antes de subir ads.** |
 
 ---
 

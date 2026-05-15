@@ -34,6 +34,7 @@ SKILLS=(
   "AGENTE-COPY"
   "AGENTE-PAGINA"
   "AGENTE-CRIATIVO"
+  "fop-install"
 )
 
 for skill in "${SKILLS[@]}"; do
@@ -45,7 +46,7 @@ done
 rm -rf "$TMP_DIR"
 
 echo ""
-echo "✅ 10 skills instaladas em $SKILLS_DIR"
+echo "✅ 11 skills instaladas em $SKILLS_DIR"
 echo ""
 echo "Reinicie o Claude Code e use:"
 echo "  /pesquisar-nicho    → validar nicho com Meta Ads Library"
@@ -55,4 +56,5 @@ echo "  /AGENTE-COPY        → copy black completa (headlines, bullets, VSL, ho
 echo "  /AGENTE-PAGINA      → página HTML completa pronta para Vercel"
 echo "  /AGENTE-CRIATIVO    → kit criativos Meta (VSL + UGC + carrossel + estáticas)"
 echo "  /cakto-setup        → montar funil Cakto 9 produtos"
+echo "  /fop-install        → Pixel + CAPI + Match Quality 9+ (MetricaGeek)"
 echo ""
